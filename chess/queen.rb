@@ -1,10 +1,14 @@
+require_relative "slideable"
+
 class Queen < Piece
-  def initialize(board, color, pos, symbol)
-    super(board, color, pos)
-    @symbol = symbol
-    @move_
+  include Slideable
+
+  def initialize(board, color, pos)
+    super
+    @symbol = :Q
   end
 
+  protected
   def move_dirs 
     return :both
   end

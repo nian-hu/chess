@@ -1,6 +1,11 @@
+require_relative "slideable"
+
 class Rook < Piece
-  def symbol
-    :R
+  include Slideable
+
+  def initialize(board, color, pos)
+    super
+    @symbol = :R
   end
 
   protected 

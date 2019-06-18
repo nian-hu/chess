@@ -11,21 +11,25 @@ class Display
   end
 
   def render 
+    system("clear")
     pic = self.board.rows.map do |row|
       row.map do |spot|
         if spot.is_a? Piece
-          "P"
+          uppercase = spot.symbol.to_s
+          spot.color == :white ? uppercase.downcase : uppercase
         else
-          "X"
+          "_"
         end
       end
     end
 
     x, y = self.cursor.cursor_pos
-    pic[x][y] = pic[x][y].colorize(:red)
-
-
-    pic.each { |row| puts row.join(" ") }
+    pic[x][y] = pic[x][y].colorize(:white).on_black
+  
+    puts "  #{("A".."H").to_a.join(' ')}".colorize(:light_blue)
+    pic.each_with_index do |row, i| 
+      puts "#{8 - i}".colorize(:light_blue) + " #{row.join(' ')}"
+    end
     puts "    "
   end
 

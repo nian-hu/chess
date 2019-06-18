@@ -1,8 +1,17 @@
+require_relative "stepable"
+
 class Knight < Piece
-  def initialize(board, color, pos, symbol)
-    super(board, color, pos)
-    @symbol = symbol
-    @move_
+  include Stepable
+
+
+  def initialize(board, color, pos)
+    super
+    @symbol = :N
+  end
+
+  protected
+  def move_diff
+    return :jump
   end
 
 end

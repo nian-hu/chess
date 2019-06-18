@@ -1,10 +1,14 @@
+require_relative "slideable"
+
 class Bishop < Piece
-  def initialize(board, color, pos, symbol)
-    super(board, color, pos)
-    @symbol = symbol
-    @move_
+  include Slideable
+
+  def initialize(board, color, pos)
+    super
+    @symbol = :B
   end
 
+  protected
   def move_dirs 
     return :diagonal
   end

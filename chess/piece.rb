@@ -3,9 +3,12 @@ class Piece
     @color = color
     @board = board
     @pos = pos
+    @symbol = :_
   end
 
-  def moves
-    
+  def inspect
+    self.symbol
   end
+
+  attr_reader :symbol, :color
 end

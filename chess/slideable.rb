@@ -43,19 +43,14 @@ module Slideable
   end
 
   def moves
-    possible_moves = []
-
     case move_dirs
-    when :straight #rook
-      horizontal_dirs
-    when :diagonal #bishop
-      diagonal_dirs
-    when :both #queen
-      horizontal_dirs
-      diagonal_dirs
+    when :straight        #rook
+      return horizontal_dirs
+    when :diagonal        #bishop
+      return diagonal_dirs
+    when :both            #queen
+      return horizontal_dirs + diagonal_dirs
     end
-
-    possible_moves
   end
 
   private 

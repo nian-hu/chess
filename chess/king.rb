@@ -1,8 +1,18 @@
+require_relative "stepable"
+
 class King < Piece
-  def initialize(board, color, pos, symbol)
-    super(board, color, pos)
-    @symbol = symbol
-    @move_
+  include Stepable
+
+  
+  def initialize(board, color, pos)
+    super
+    @symbol = :K
+
+  end
+
+  protected
+  def move_diff
+    return :step
   end
 
 end
