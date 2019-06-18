@@ -30,13 +30,14 @@ module Stepable
   def is_valid?(pos) #from Board class
     x, y = pos 
     return false if x < 0 || x > 7 || y < 0 || y > 7
+    return false if self.board[pos].color == self.color
     true
   end
 
   def jump_dirs
     possible_moves = []
     JUMP.each do |dir|
-      pos = add_direction(start_pos, dir)
+      pos = add_direction(self.pos, dir)
       possible_moves << pos if is_valid?(pos)
     end
     possible_moves  
@@ -45,7 +46,7 @@ module Stepable
   def step_dirs
     possible_moves = []
     STEP.each do |dir|
-      pos = add_direction(start_pos, dir)
+      pos = add_direction(self.pos, dir)
       possible_moves << pos if is_valid?(pos)
     end
     possible_moves  

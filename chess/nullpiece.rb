@@ -5,7 +5,8 @@ class NullPiece < Piece
   attr_reader :color, :symbol
 
   def initialize
-    @symbol = :N
+    @symbol = :_
+    @color = nil
   end
 
   def moves

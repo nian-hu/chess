@@ -9,17 +9,25 @@ module Slideable
   end
 
   def horizontal_dirs #(start_pos)
+    self.color == :black ? opp = :white : opp = :black
     possible_moves = []
     HORIZONTAL_DIRS.each do |dir|
       pos = self.pos.dup  
 
       pos = add_direction(pos, dir)
-      until !is_valid?(pos)
-        possible_moves << pos 
-        pos = add_direction(pos, dir)
+        until !is_valid?(pos) 
+          if self.board[pos].color == self.color
+            break
+          elsif self.board[pos].color == opp
+            possible_moves << pos 
+            break
+          else
+            possible_moves << pos 
+            pos = add_direction(pos, dir)
+          end
+        end
       end
-    end
-    possible_moves 
+      possible_moves  
   end
 
   def is_valid?(pos) #from Board class
@@ -29,17 +37,25 @@ module Slideable
   end
 
   def diagonal_dirs #(start_pos)
+    self.color == :black ? opp = :white : opp = :black
     possible_moves = []
     DIAGONAL_DIRS.each do |dir|
-    pos = self.pos.dup  
+      pos = self.pos.dup  
 
-    pos = add_direction(pos, dir)
-      until !is_valid?(pos)
-        possible_moves << pos 
-        pos = add_direction(pos, dir)
+      pos = add_direction(pos, dir)
+        until !is_valid?(pos) 
+          if self.board[pos].color == self.color
+            break
+          elsif self.board[pos].color == opp
+            possible_moves << pos 
+            break
+          else
+            possible_moves << pos 
+            pos = add_direction(pos, dir)
+          end
+        end
       end
-    end
-    possible_moves  
+      possible_moves  
   end
 
   def moves
@@ -51,6 +67,10 @@ module Slideable
     when :both            #queen
       return horizontal_dirs + diagonal_dirs
     end
+  end
+
+  def grow_unblocked_moves_in_dir(dx,dy)
+
   end
 
   private 
